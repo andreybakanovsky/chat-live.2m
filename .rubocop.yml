@@ -24,3 +24,7 @@ Bundler/OrderedGems:
 Style/BlockComments:
   Exclude:
     - 'spec/spec_helper.rb'
+
+Style/Documentation:
+  Description: Document classes and non-namespace modules.
+  Enabled: false
