@@ -1,0 +1,25 @@
+<main class="form-signin w-100 p-20 m-auto">
+  <h2 class="h3 mb-3 fw-normal">Log in</h2>
+  <%= form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
+    <div class="form-floating">
+      <%= f.email_field :email,
+                          autofocus: true,
+                          id:"floatingInput",
+                          type:"email",
+                          class:"form-control",
+                          placeholder:"name@example.com" %>
+      <label for="floatingInput">Email address</label>
+    </div>
+    <div class="form-floating">
+      <%= f.password_field :password,
+                          autocomplete: "current-password",
+                          class:"form-control",
+                          id:"floatingPassword",
+                          placeholder:"Password" %>
+      <label for="floatingPassword">Password</label>
+    </div>
+    <div class="actions">
+      <%= f.submit "Log in", class:"btn btn-primary w-100 py-2", id:'log_in_button', type:"submit" %>
+    </div>
+  <% end %>
+</main>

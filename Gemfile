@@ -55,6 +55,8 @@ group :development, :test do
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
   gem 'rspec-rails', '~> 6.1.0'
+  gem "rails-controller-testing"
+  gem "factory_bot_rails"
 end
 
 group :development do
@@ -75,3 +77,5 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
 end
+
+gem "devise", "~> 4.9"
