@@ -1,24 +1,58 @@
-# README
+# Live Chat
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project aims to develop a real-time messaging application where users can log in simultaneously from different browser windows and exchange messages individually or within the commongroup. Users can send messages to specific recipients or broadcast messages to all users.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- Ruby 3.2.2
+- Rails 7.1.3
+- Bun
+- Bootstrap
+- Postgresql
 
-* System dependencies
+## Installation
 
-* Configuration
+Clone this repo and change to its root directory
 
-* Database creation
+`git clone https://github.com/andreybakanovsky/chat-live && cd chat-live`
 
-* Database initialization
+Install the Ruby gems
 
-* How to run the test suite
+`bundle install`
 
-* Services (job queues, cache servers, search engines, etc.)
+Install the Bun
 
-* Deployment instructions
+`brew tap oven-sh/bun`
+`brew install bun`
 
-* ...
+and execute
+
+`bun install`
+
+Set up the database
+
+`rails db:create`
+`rails db:migrate`
+`rails db:seed`
+
+## Testing
+
+To run all tests execute
+
+`rake tests`
+
+Run Rspec tests
+
+`bundle exec rspec -f d`or `bundle exec rspec -f d` with the documentation format
+
+Run Cucumber tests
+
+`bundle exec cucumber`
+
+## Run app
+
+In the `chat-live` project directory, run
+
+`bin/dev`
+
+Visit [http://localhost:3000](http://localhost:3000) in your browser.
