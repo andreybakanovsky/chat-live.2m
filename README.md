@@ -1,6 +1,6 @@
 # Live Chat
 
-This project aims to develop a real-time messaging application where users can log in simultaneously from different browser windows and exchange messages individually or within the commongroup. Users can send messages to specific recipients or broadcast messages to all users.
+This project aims to develop a real-time messaging application where users can log in simultaneously from different browser windows and exchange messages individually or within the common group. Users can send messages to specific recipients or broadcast messages to all users.
 
 ## Requirements
 
@@ -43,7 +43,7 @@ To run all tests execute
 
 Run Rspec tests
 
-`bundle exec rspec -f d`or `bundle exec rspec -f d` with the documentation format
+`bundle exec rspec` or `bundle exec rspec -f d` with the documentation format
 
 Run Cucumber tests
 
