@@ -1,5 +1,39 @@
-<main class="flex text-center">
-  <div class="container">
-    <h3 class="mt-5 text-secondary">Welcome to our Live Chat!</h3>
+<div id="user-id" data-user-id="<%= current_user.id %>"></div>
+<div id="chat-token" data-chat-token="<%= @token %>"></div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3 charts-sidebar">
+      <% users.each do |user| %>
+        <%= link_to chat_path(user.id), class: 'chat-link' do %>
+          <% active_class = (@recipient == user) ? 'active' : '' %>
+          <div class="card no-outline mb-2 chart-card <%= active_class %>">
+            <div class="card-body">
+              <span class='name'><%= user.name %></span><br>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-9">
+      <% if @recipient.present? %>
+        <div class="chat-space">
+          <nav class="navbar navbar-light">
+            <span class="navbar-brand px-3" href="#">
+              <%= @recipient.name %>
+            </span>
+          </nav>
+          <div id="messages" class="flex-grow-1 overflow-auto">
+            <% @users_messages.each do |message| %>
+              <%= render 'messages/message', message: message %>
+            <% end %>
+          </div>
+          <div class="chat-box">
+            <%= render 'messages/form', message: Message.new, recipient: @recipient, token: @token %>
+          </div>
+        </div>
+      <% else %>
+        <h3 class="mt-5 text-secondary">Welcome to our Live Chat!</h3>
+      <% end %>
+    </div>
   </div>
-</main>
+</div>

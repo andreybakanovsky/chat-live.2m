@@ -1,4 +1,117 @@
-@import 'bootstrap/scss/bootstrap';
-@import 'bootstrap-icons/font/bootstrap-icons';
-@import 'sign-in';
-@import 'sign-up';
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons";
+@import "sign-in";
+@import "sign-up";
+
+body {
+    overflow-y: hidden;
+    ::-webkit-scrollbar {
+        display: none;
+    }
+    -ms-overflow-style: none;
+}
+
+.chat-space {
+    height: 100vh;
+    // position: relative;
+
+    #messages {
+        height: 100%;
+        overflow-y: scroll;
+        padding-bottom: 220px;
+        padding-top: 20px;
+    }
+
+    .navbar {
+        border-bottom: 1px solid #eeeeee;
+        margin-left: -15px;
+        width: calc(100% + 30px);
+    }
+
+    .message {
+        min-height: 59px;
+        .content-container {
+            display: inline-block;
+            .content {
+                background-color: #eeeeee;
+                padding: 8px 16px;
+                border-radius: 10px;
+            }
+            .author {
+                font-size: 0.8rem;
+                color: #777777;
+                margin-left: 10px;
+            }
+        }
+        &.me {
+            .content-container {
+                text-align: right;
+                float: right;
+                // display: inline-block;
+                .content {
+                    padding: 8px 16px;
+                    border-radius: 10px;
+                    background-color: #007bff;
+                    color: white;
+                }
+            }
+        }
+    }
+    .space {
+        min-height: 10px;
+    }
+    .chat-box {
+        position: fixed;
+        bottom: -10px;
+        padding: 20px;
+        width: 75%;
+        margin-left: -15px;
+        background-color: white;
+        border-top: 1px solid #eeeeee;
+        input[type="text"] {
+            height: 45px;
+            font-size: 18px;
+            padding: 8px;
+        }
+        .btn {
+            height: 45px;
+        }
+    }
+}
+
+.card.no-outline {
+    border: none;
+}
+
+.chat-link {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+    .chart-card {
+        transition: background-color 0.5s ease;
+        border-radius: 10px;
+        &:hover {
+            background-color: #eeeeee;
+        }
+        &.active {
+            background-color: #28a745;
+            .name {
+                color: white;
+            }
+        }
+        .name {
+            // font-weight: bold;
+            color: $gray-800;
+        }
+    }
+}
+
+.chat-send-button {
+    margin-left: 10px;
+    width: 200px;
+}
+
+.charts-sidebar {
+    border-right: 1px solid #eeeeee;
+}
