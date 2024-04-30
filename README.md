@@ -1,13 +1,12 @@
 # Live Chat
 
-This project aims to develop a real-time messaging application where users can log in simultaneously from different browser windows and exchange messages individually or within the common group. Users can send messages to specific recipients or broadcast messages to all users.
+This project aims to develop a real-time messaging application where users can exchange messages individually or within the common group.
 
 ## Requirements
 
 - Ruby 3.2.2
 - Rails 7.1.3
 - Bun
-- Bootstrap
 - Postgresql
 
 ## Installation
