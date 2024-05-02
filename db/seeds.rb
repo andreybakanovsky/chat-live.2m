@@ -8,6 +8,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+Message.delete_all
 User.delete_all
 User.create!(name: 'Все пользователи',
              email: 'admin@livechat.com',
