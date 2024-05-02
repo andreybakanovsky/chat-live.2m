@@ -30,15 +30,17 @@ class ChatsController < ApplicationController
   end
 
   def token
-    if recipient.as_common_chat?
-      @token = ''
-      return
-    end
+    return @token ||= users_messages.first.token if users_messages.exists?
+    return @token = "" if recipient.as_common_chat?
 
-    @token = if users_messages.count.positive?
-               users_messages.first.token
-             else
-               SecureRandom.uuid
-             end
+    @token = calculate_token
+  end
+
+  def calculate_token
+    if current_user.id < recipient.id
+      "#{current_user.id}_#{recipient.id}"
+    else
+      "#{recipient.id}_#{current_user.id}"
+    end
   end
 end
