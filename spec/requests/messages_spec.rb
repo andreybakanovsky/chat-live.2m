@@ -26,9 +26,9 @@ RSpec.describe '/messages' do
         end.to change(Message, :count).by(1)
       end
 
-      it 'returns a successful responce' do
+      it 'returns a successful response' do
         post messages_path, params: valid_attributes
-        expect(response).to redirect_to(chats_path(recipient.id))
+        expect(response).to have_http_status(:success)
       end
     end
 

@@ -5,6 +5,9 @@ require 'rails_helper'
 RSpec.describe User do
   it { is_expected.to validate_presence_of(:name) }
 
+  it { is_expected.to have_many(:sent_messages).class_name('Message').with_foreign_key('sender_id') }
+  it { is_expected.to have_many(:received_messages).class_name('Message').with_foreign_key('recipient_id') }
+
   describe "validations" do
     it "is valid with valid attributes" do
       user = build(:user)
@@ -27,18 +30,33 @@ RSpec.describe User do
     end
   end
 
-  it { is_expected.to have_many(:sent_messages).class_name('Message').with_foreign_key('sender_id') }
-  it { is_expected.to have_many(:received_messages).class_name('Message').with_foreign_key('recipient_id') }
+  describe "online statuses" do
+    let(:user) { create(:user) }
+
+    it "creates offline user" do
+      expect(user).to be_offline
+    end
+
+    it "updates user status to online" do
+      user.online!
+      expect(user).to be_online
+    end
+
+    it "updates user status to away" do
+      user.away!
+      expect(user).to be_away
+    end
+  end
 
   describe '#as_common_chat?' do
     it 'returns true if the user is identified as a common chat' do
       common_chat_user = build(:user, name: "common chat", email: 'admin@livechat.com')
-      expect(common_chat_user.as_common_chat?).to be_truthy
+      expect(common_chat_user).to be_as_common_chat
     end
 
     it 'returns false if the user is not identified as a regular user' do
       user = build(:user)
-      expect(user.as_common_chat?).to be_falsey
+      expect(user).not_to be_as_common_chat
     end
   end
 end

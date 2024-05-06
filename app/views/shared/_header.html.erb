@@ -1,11 +1,15 @@
+<%= turbo_stream_from :appearance_channel %>
 <ul class="nav justify-content-end">
   <% if user_signed_in? %>
     <li class="nav-item">
       <%= link_to "Chats", root_path, class:"nav-link active" %>
     </li>
     <li class="nav-item">
-      <p class="nav-link active">hello, <%= current_user.name %></p>
+      <div class="nav-link pe-2">hello, <%= current_user.name %></div>
     </li>
+    <div class="icon-container">
+      <%= render "users/online_status", user: current_user %>
+    </div>
     <li class="nav-item">
       <%= button_to "Log out", destroy_user_session_path, method: :delete, class:"nav-link active" %>
     </li>
