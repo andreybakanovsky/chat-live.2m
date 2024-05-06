@@ -1,29 +1,29 @@
 import consumer from "./consumer"
 
 document.addEventListener('turbo:load', () => {
-  console.log('event')
   const element = document.getElementById('chat-token')
   if (!element) {
     return
   }
-  const token = element.getAttribute('data-chat-token')
+
   consumer.subscriptions.subscriptions.forEach((subscription) => {
-    consumer.subscriptions.remove(subscription)
+    const subscriptionIdentifier = JSON.parse(subscription.identifier).channel;
+    if (subscriptionIdentifier !== "AppearanceChannel") {
+      consumer.subscriptions.remove(subscription)
+    }
   })
 
+  const token = element.getAttribute('data-chat-token')
 
   consumer.subscriptions.create(
     { channel: "ChatChannel", token: token }, {
     connected() {
-
     },
 
     disconnected() {
     },
 
     received(data) {
-      console.log(data)
-
       const user_id_element = document.getElementById('user-id')
       const sender_id = Number(user_id_element.getAttribute('data-user-id'))
 

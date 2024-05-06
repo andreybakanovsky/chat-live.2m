@@ -5,7 +5,6 @@ class MessagesController < ApplicationController
     message = Message.new message_params
     message.sender = current_user
     message.save!
-    redirect_back(fallback_location: chats_path(message.recipient_id))
 
     SendMessageJob.perform_later(message)
   end

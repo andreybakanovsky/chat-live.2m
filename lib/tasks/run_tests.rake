@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 task tests: [:run_rspec_tests, :run_cucumber_tests]
 
 task run_rspec_tests: :environment do

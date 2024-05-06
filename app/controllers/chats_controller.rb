@@ -18,7 +18,7 @@ class ChatsController < ApplicationController
   end
 
   helper_method def users
-    @users ||= User.where.not(id: current_user.id)
+    @users ||= User.where.not(id: current_user.id).order(id: :asc)
   end
 
   def users_messages
