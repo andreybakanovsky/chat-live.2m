@@ -17,7 +17,19 @@ module ChatLive
     config.autoload_lib(ignore: %w(assets tasks))
 
     config.after_initialize do |_config|
-      User.update_all(online_status: :offline)
+      ActiveRecord::Base.connection
+    rescue ActiveRecord::NoDatabaseError, ActiveRecord::ConnectionNotEstablished => e
+      if e.is_a?(ActiveRecord::NoDatabaseError)
+        puts "Database was not created. User statuses were not changed."
+      elsif e.is_a?(ActiveRecord::ConnectionNotEstablished)
+        puts "Connection to database could not be established."
+      end
+    else
+      if User.table_exists?
+        User.update_all(online_status: :offline)
+      else
+        puts "User table doesn't exist. Migrations are expected."
+      end
     end
 
     # Configuration for the application, engines, and railties goes here.
