@@ -3,14 +3,14 @@
 <%= turbo_stream_from :appearance_channel %>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-3 charts-sidebar">
+    <div class="col-3 charts-sidebar" data-turbo-prefetch="false" >
       <% users.each do |user| %>
         <%= link_to chat_path(user.id), class: 'chat-link' do %>
           <% active_class = (@recipient == user) ? 'active' : '' %>
           <div class="card no-outline mb-2 chart-card <%= active_class %>">
             <div class="card-body">
               <span class='name'><%= user.name %></span><br>
-                <%= render "users/online_status", user: user %>
+              <%= render "users/online_status", user: user %>
             </div>
           </div>
         <% end %>
