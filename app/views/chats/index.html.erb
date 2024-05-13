@@ -24,7 +24,7 @@
               <%= @recipient.name %>
             </span>
           </nav>
-          <div id="messages" class="flex-grow-1 overflow-auto">
+          <div id="messages" class="flex-grow-1 overflow-auto" data-controller="chat-scroll">
             <% @users_messages.each do |message| %>
               <%= render 'messages/message', message: message %>
             <% end %>
