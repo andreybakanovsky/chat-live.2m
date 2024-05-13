@@ -30,7 +30,7 @@
             <% end %>
           </div>
           <div class="chat-box">
-            <%= render 'messages/form', message: Message.new, recipient: @recipient, token: @token %>
+            <%= render 'messages/form', recipient: @recipient, token: @token %>
           </div>
         </div>
       <% else %>

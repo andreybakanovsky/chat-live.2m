@@ -15,7 +15,7 @@ document.addEventListener('turbo:load', () => {
 
   const token = element.getAttribute('data-chat-token')
 
-  consumer.subscriptions.create(
+  const chatChannel = consumer.subscriptions.create(
     { channel: "ChatChannel", token: token }, {
     connected() {
     },
@@ -37,8 +37,7 @@ document.addEventListener('turbo:load', () => {
 
       const messageContainer = document.getElementById('messages')
       messageContainer.innerHTML = messageContainer.innerHTML + message_html
-
-      document.getElementById('message-input').value = ""
     }
   })
+  window.channel = chatChannel
 })
