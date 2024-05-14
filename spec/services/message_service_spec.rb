@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe MessageService do
+  include ActiveJob::TestHelper
+
   let(:content) { "Content of the message" }
   let(:token) { "001-010" }
   let(:sender) { create(:user) }
@@ -15,9 +17,7 @@ RSpec.describe MessageService do
   end
 
   it 'enqueues SendMessageJob' do
-    message_service = described_class.new(content:, token:, sender_id: sender.id, recipient_id: recipient.id)
-    allow(SendMessageJob).to receive(:perform_later)
-    message_service.perform
-    expect(SendMessageJob).to have_received(:perform_later).with(an_instance_of(Message))
+    described_class.new(content:, token:, sender_id: sender.id, recipient_id: recipient.id).perform
+    expect(SendMessageJob).to have_been_enqueued.with(Message.last)
   end
 end
