@@ -1,11 +1,13 @@
-Feature: Home page
-  In order to read the page
-  As a viewer
-  I want to see the home page of my app
+# language: ru
 
-  Background:
-    Given user is logged in
+Функционал: Домашняя страница
+  Как зарегистрированному на сайте
+  Пользователю необходимо попасть на домашнюю страницу приложения
 
-	Scenario: View chats page
-  		Given I am on the home page
-  		Then I should see "Welcome to our Live Chat!"
+  Контекст:
+    Допустим пользователь имеет зарегистрированный аккаунт
+
+  Сценарий: Просмотр страницы чатов
+    Допустим пользователь входит с email "misha@livechat.com" и паролем "123456"
+    Тогда он должен быть перенаправлен на домашнюю страницу
+    И он должен видеть "Welcome to our Live Chat!"
