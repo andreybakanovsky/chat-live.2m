@@ -1,45 +1,51 @@
-Feature: Messaging between users
+# language: ru
+@javascript
 
-  Background:
-    Given USER_1 is logged in
-    And USER_2 exists
-    And USER_3 exists
-    And COMMON chat exists
+Функционал: Обмен сообщениями между пользователями
 
+  Контекст:
+    Допустим имеется ОБЩИЙ чат
+    Допустим имеются ПОЛЬЗОВАТЕЛИ
+    И ПОЛЬЗОВАТЕЛЬ_1 вошел в систему
+    И ПОЛЬЗОВАТЕЛЬ_2 вошел в систему
+    И ПОЛЬЗОВАТЕЛЬ_3 вошел в систему
 
-  Scenario: Sending messages between users and common chat
-    Given the USER_1 is on the chats page
-    Then he should see the user's name
-    Then he should see the common chat's name
+  Сценарий: Отправка сообщений между пользователями и в общий чат
+    Допустим ПОЛЬЗОВАТЕЛЬ_1 находится на странице чатов
+    Тогда он должен видеть имя пользователя
+    И он должен видеть имя общего чата
 
-    When he clicks on the link to USER_2 chat
-    Then he can write message "Message 1" to USER_2
-    When clicks the send button here in USER_2 chat
-    Then he should stay on the current page
-    And the "Message 1" should appear in the USER_2 chat
+    Когда он нажимает на ссылку для чата с ПОЛЬЗОВАТЕЛЕМ_2
+    Тогда он может написать сообщение "Сообщение 1" ПОЛЬЗОВАТЕЛЮ_2
+    Когда нажимает кнопку отправки сообщения в чате ПОЛЬЗОВАТЕЛЯ_2
+    Тогда он должен остаться на текущей странице
+    И "Сообщение 1" должно появиться в чате ПОЛЬЗОВАТЕЛЯ_2
 
-    When USER_1 clicks on the link to COMMON chat
-    Then he can write message "Message 2" in COMMON chat
-    When clicks the send button here in COMMON chat
-    Then the message "Message 2" should appear in COMMON chat
+    Когда ПОЛЬЗОВАТЕЛЬ_1 нажимает на ссылку для общего чата
+    Тогда он может написать сообщение "Сообщение 2" в общем чате
+    Когда нажимает кнопку отправки здесь в общем чате
+    Тогда сообщение "Сообщение 2" должно появиться в общем чате
 
-    Then USER_1 is logget out
-    And USER_2 is logged in
-    Then USER_2 can see the USER_1 chat's name
-    And he can see the COMMON chat's name
-    When he clicks on the link to USER_1 chat
-    Then the "Message 1" appears in the USER_1 chat
-    When he clicks on the link to COMMON chat
-    Then the "Message 2" appears in the COMMON chat
+    Дано ПОЛЬЗОВАТЕЛЬ_2 может видеть имя чата с ПОЛЬЗОВАТЕЛЕМ_1
+    И он может видеть название общего чата
+    Когда он нажимает на ссылку для чата с ПОЛЬЗОВАТЕЛЕМ_1
+    Тогда "Сообщение 1" появляется в чате ПОЛЬЗОВАТЕЛЯ_1
+    Когда он нажимает на ссылку для общего чата
+    Тогда "Сообщение 2" появляется в общем чате
 
-    Then USER_2 is logget out
-    And USER_3 is logged in
-    Then USER_3 can see the USER_1 chat's name
-    And USER_3 can see the USER_2 chat's name
-    And USER_3 can see the COMMON chat's name
-    When USER_3 clicks on the link to USER_1 chat
-    Then "Message 1" or "Message 2" does not appears in the USER_1 chat
-    When USER_3 clicks on the link to USER_2 chat
-    Then "Message 1" or "Message 2" does not appears in the USER_2 chat
-    When USER_3 clicks on the link to COMMON chat
-    Then USER_3 can the "Message 2" appears in the COMMON chat
+    Дано ПОЛЬЗОВАТЕЛЬ_3 может видеть имя чата с ПОЛЬЗОВАТЕЛЕМ_1
+    И ПОЛЬЗОВАТЕЛЬ_3 может видеть имя чата с ПОЛЬЗОВАТЕЛЕМ_2
+    И ПОЛЬЗОВАТЕЛЬ_3 может видеть имя общего чата
+    Когда ПОЛЬЗОВАТЕЛЬ_3 нажимает на ссылку для чата с ПОЛЬЗОВАТЕЛЕМ_1
+    Тогда "Сообщение 1" или "Сообщение 2" не появляется в чате ПОЛЬЗОВАТЕЛЯ_1
+    Когда ПОЛЬЗОВАТЕЛЬ_3 нажимает на ссылку для чата с ПОЛЬЗОВАТЕЛЕМ_2
+    Тогда "Сообщение 1" или "Сообщение 2" не появляется в чате ПОЛЬЗОВАТЕЛЯ_2
+    Когда ПОЛЬЗОВАТЕЛЬ_3 нажимает на ссылку для общего чата
+    Тогда ПОЛЬЗОВАТЕЛЬ_3 видит "Сообщение 2" в общем чате
+
+    Когда ПОЛЬЗОВАТЕЛЬ_1 выходит из системы
+    Тогда ПОЛЬЗОВАТЕЛЬ_1 должен выйти и увидеть страницу входа
+    Когда ПОЛЬЗОВАТЕЛЬ_2 выходит из системы
+    Тогда ПОЛЬЗОВАТЕЛЬ_2 должен выйти и увидеть страницу входа
+    Когда ПОЛЬЗОВАТЕЛЬ_3 выходит из системы
+    Тогда ПОЛЬЗОВАТЕЛЬ_3 должен выйти и увидеть страницу входа

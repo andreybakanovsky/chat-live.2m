@@ -1,14 +1,15 @@
-Feature: Sign In
-  As a registered user
-  I want to be able to sign in
-  So that I can access my account
+# language: ru
 
-  Scenario: Successful sign in
-    Given I have a registered account
-    When I sign in with valid credentials
-    Then I should be redirected to the root page
+Функционал: Вход в систему
+  Как зарегистрированный пользователь
+  Я хочу иметь возможность войти в систему
+  Для того чтобы получить доступ к моему аккаунту
 
-  Scenario: Unsuccessful sign in
-    Given I have a registered account
-    When I sign in with invalid credentials
-    Then I should be redirected to the new session page
+  Сценарий: Успешный вход в систему
+    Допустим у меня есть зарегистрированный аккаунт
+    Когда я вхожу с email "misha@livechat.com" и паролем "123456"
+    Тогда я должен быть перенаправлен на главную страницу
+
+  Сценарий: Неуспешный вход в систему
+    Когда я вхожу с email "misha@livechat.com" и неверным паролем "123456."
+    Тогда я должен быть перенаправлен на страницу новой сессии

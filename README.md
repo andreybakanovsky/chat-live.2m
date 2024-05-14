@@ -30,7 +30,7 @@ docker compose version
 docker compose build
 ```
 ```
-docker compose run --rm web bin/rails db:setup db:migrate db:seed
+docker compose run --rm web bin/rails db:setup
 ```
 By default, the following ports are used: the application port is 4000, and the database port is 5435. If you wish to change the ports to match those already in use, execute the command:
 ```
