@@ -3,10 +3,45 @@
 require 'rails_helper'
 
 RSpec.describe User do
-  it { is_expected.to validate_presence_of(:name) }
+  # it { is_expected.to validate_presence_of(:name) }
 
-  it { is_expected.to have_many(:sent_messages).class_name('Message').with_foreign_key('sender_id') }
-  it { is_expected.to have_many(:received_messages).class_name('Message').with_foreign_key('recipient_id') }
+  it 'validates presence of name' do
+    user = User.new(name: nil)
+    user.valid?
+    expect(user.errors[:name]).to include("can't be blank")
+  end
+
+  describe "the sent messages association" do
+    let(:association) { described_class.reflect_on_association(:sent_messages) }
+
+    it 'has has_many association' do
+      expect(association.macro).to eq(:has_many)
+    end
+
+    it 'has Messages class_name' do
+      expect(association.options[:class_name]).to eq('Message')
+    end
+
+    it 'has the foreign key as sender_id' do
+      expect(association.options[:foreign_key]).to eq('sender_id')
+    end
+  end
+
+  describe "the received messages association" do
+    let(:association) { described_class.reflect_on_association(:received_messages) }
+
+    it 'has has_many association' do
+      expect(association.macro).to eq(:has_many)
+    end
+
+    it 'has Messages class_name' do
+      expect(association.options[:class_name]).to eq('Message')
+    end
+
+    it 'has the foreign key as recipient_id' do
+      expect(association.options[:foreign_key]).to eq('recipient_id')
+    end
+  end
 
   describe "validations" do
     it "is valid with valid attributes" do
