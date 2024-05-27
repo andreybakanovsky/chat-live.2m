@@ -53,6 +53,31 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+# Selenium::WebDriver.logger.level = Logger::DEBUG
+
 Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
+  options = Selenium::WebDriver::Chrome::Options.new
+
+  if ENV['SELENIUM_DRIVER_URL'].present?
+    options.add_argument('--headless=new')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-gpu')
+    Capybara::Selenium::Driver.new(app,
+                                   browser: :remote,
+                                   url: ENV.fetch('SELENIUM_DRIVER_URL', nil),
+                                   options:)
+  else
+    options.add_argument('--window-size=1280,768')
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options:)
+  end
 end
+
+if ENV['SELENIUM_DRIVER_URL'].present?
+  Capybara.app_host = "http://#{IPSocket.getaddress(Socket.gethostname)}:3000"
+  Capybara.server_host = '0.0.0.0'
+  Capybara.server_port = 3000
+  Capybara.always_include_port = true
+end
+
+Capybara.javascript_driver = :selenium
