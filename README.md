@@ -53,21 +53,21 @@ or on another port you define.
 ## Running tests
 To run all tests execute:
 ```
-docker-compose run --rm -e "RAILS_ENV=test" web rake tests
+docker compose run --rm -e "RAILS_ENV=test" web bundle exec rake tests
 ```
 
 To run Rspec tests execute:
 ```
-docker-compose run --rm -e "RAILS_ENV=test" web bundle exec rspec
+docker compose run --rm -e "RAILS_ENV=test" web bundle exec rspec
 ```
 or with the documentation format:
 ```
-docker-compose run --rm -e "RAILS_ENV=test" web bundle exec rspec -f d
+docker compose run --rm -e "RAILS_ENV=test" web bundle exec rspec -f d
 ```
 
 To run Cucumber tests execute:
 ```
-docker-compose run --rm -e "RAILS_ENV=test" web bundle exec cucumber
+docker compose run --rm -e "RAILS_ENV=test" web bundle exec cucumber
 ```
 
 
