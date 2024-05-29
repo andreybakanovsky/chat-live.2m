@@ -1,6 +1,6 @@
 # Live Chat
 
-This project aims to develop a real-time messaging application where users can exchange messages individually or within the common group.
+This project aims to develop a real-time messaging application where users can exchange messages individually or within `one` common group. The project based on `two` models only
 
 ## Features
 
